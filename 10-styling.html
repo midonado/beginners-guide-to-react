@@ -11,44 +11,45 @@
       justify-content: center;
       text-align: center;
     }
+
     .box--large {
       width: 270px;
       height: 270px;
     }
+
     .box--medium {
       width: 180px;
       height: 180px;
     }
+
     .box--small {
       width: 90px;
       height: 90px;
     }
   </style>
   <script type="text/babel">
-    function Box({style, size, className = '', ...rest}) {
+    function Box({ color, size = 'sizeless', className = '', ...rest }) {
       const sizeClassName = size ? `box--${size}` : ''
+      const colorName = `${color}`
+      console.log(color)
       return (
         <div
           className={`box ${className} ${sizeClassName}`}
-          style={{fontStyle: 'italic', ...style}}
+          style={{ fontStyle: 'italic', backgroundColor: colorName }}
           {...rest}
-        />
+        >
+          {size} {color} box
+        </div>
       )
     }
 
     const element = (
-      <div>
-        <Box size="small" style={{backgroundColor: 'lightblue'}}>
-          small lightblue box
-        </Box>
-        <Box size="medium" style={{backgroundColor: 'pink'}}>
-          medium pink box
-        </Box>
-        <Box size="large" style={{backgroundColor: 'orange'}}>
-          large orange box
-        </Box>
-        <Box>sizeless box</Box>
-      </div>
+      <>
+        <Box size="small" color="lightblue" />
+        <Box size="medium" color="pink" />
+        <Box size="large" color="orange" />
+        <Box />
+      </>
     )
 
     ReactDOM.render(element, document.getElementById('root'))
